@@ -1,0 +1,47 @@
+{
+    "SmartBird": {
+        "checkpoints": [
+            {
+                "steps": 499972,
+                "file_path": "results\\SmartBird\\SmartBird\\SmartBird-499972.onnx",
+                "reward": null,
+                "creation_time": 1639097331.2147076,
+                "auxillary_file_paths": [
+                    "results\\SmartBird\\SmartBird\\SmartBird-499972.pt"
+                ]
+            },
+            {
+                "steps": 999958,
+                "file_path": "results\\SmartBird\\SmartBird\\SmartBird-999958.onnx",
+                "reward": 10.899999976158142,
+                "creation_time": 1639105303.2821302,
+                "auxillary_file_paths": [
+                    "results\\SmartBird\\SmartBird\\SmartBird-999958.pt"
+                ]
+            },
+            {
+                "steps": 1000022,
+                "file_path": "results\\SmartBird\\SmartBird\\SmartBird-1000022.onnx",
+                "reward": 10.899999976158142,
+                "creation_time": 1639105303.3669755,
+                "auxillary_file_paths": [
+                    "results\\SmartBird\\SmartBird\\SmartBird-1000022.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000022,
+            "file_path": "results\\SmartBird\\SmartBird.onnx",
+            "reward": 10.899999976158142,
+            "creation_time": 1639105303.3669755,
+            "auxillary_file_paths": [
+                "results\\SmartBird\\SmartBird\\SmartBird-1000022.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
