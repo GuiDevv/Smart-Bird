@@ -6,7 +6,7 @@ public class BirdAgent : MonoBehaviour
     Rigidbody2D body;
     public WallMovement pipe;
     public RealGenerator generator;
-    Vector2 force = new Vector2(0.0f, 300.0f);
+    public Vector2 force = new Vector2(0.0f, 300.0f);
     Vector3 initialPosition;
     bool pressioned;
     public float counter;
@@ -18,7 +18,6 @@ public class BirdAgent : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
-        body.gravityScale = 0;
     }
 
     private void Update()
@@ -62,5 +61,10 @@ public class BirdAgent : MonoBehaviour
         body.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         body.GetComponent<Rigidbody2D>().AddForce(force);
         body.GetComponent<Rigidbody2D>().gravityScale = 1;
+    }
+
+    public void ChangeForce(float newForce)
+    {
+        force.y = newForce;
     }
 }
