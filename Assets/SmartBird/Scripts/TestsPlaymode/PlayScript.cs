@@ -61,17 +61,16 @@ public class PlayScript
     [UnityTest]
     public IEnumerator Test_4_VerifyIfPlayerIsJumping()
     {
-       
         GameObject bird = Object.FindObjectOfType<BirdAgent>().gameObject;
-        Transform transform = bird.transform;
+        Vector3 position = new Vector3();
+        position = bird.transform.position;
 
-        SetupPlayerInfo();
 
         bird.GetComponent<BirdAgent>().FlappyJump();
         //player.GetComponent<BirdAgent>().FlappyJump();
         //player.transform.position.y = 30;
         yield return new WaitForSeconds(0.3f);
-        Assert.AreNotEqual(playerInitialTransform.position, bird.transform.position);
+        Assert.AreNotEqual(position, bird.transform.position);
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
