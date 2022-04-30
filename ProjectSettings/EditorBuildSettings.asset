@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SmartBird.unity
     guid: ac2cfae2ce859354e8758e53c4a4d1da
+  - enabled: 1
+    path: Assets/Scenes/SmartBirdNoBird.unity
+    guid: 90665040fea23c44781a187ba9cff09b
   m_configObjects: {}

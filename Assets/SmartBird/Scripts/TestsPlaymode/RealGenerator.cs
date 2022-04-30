@@ -7,11 +7,14 @@ public class RealGenerator : MonoBehaviour
     GameObject newWall;
     public GameObject player;
     public GameObject wall;
-    List<GameObject> allWals = new List<GameObject>();
+    public List<GameObject> allWals = new List<GameObject>();
+    float minimalDistance;
+    float distanceBetweenWalls;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetSpawnDistance(10.5f - 7f);
         //StartCoroutine(SpawnWalls());
     }
 
@@ -30,7 +33,7 @@ public class RealGenerator : MonoBehaviour
 
         if (newWall != null)
         {
-            if (newWall.transform.position.x < 10.5f - 7f)
+            if (newWall.transform.position.x < 10.5f - minimalDistance)
                 SpawnWall();
         }
         else 
@@ -39,17 +42,18 @@ public class RealGenerator : MonoBehaviour
 
     }
 
-    //IEnumerator SpawnWalls()
-    //{
-    //    while (enabled)
-    //    {            
-    //        yield return new WaitForSeconds(3);
-    //        Vector3 position = new Vector3(10.5f, 2.3f, 0.0f);
-    //        newWall = Instantiate(wall, position, new Quaternion(0, 0, 0, 0));
-    //        allWals.Add(newWall);
-    //    }
+    public void SetSpawnDistance(float distance)
+    {
+        minimalDistance = distance;
+    }
 
-    //}
+    public float CalculateDistance(float x1, float x2)
+    {
+        if (x2 - x1 < 0)
+            return (x2 - x1) * -1;
+        else
+            return (x2 - x1);
+    }
 
     public void resetWalls()
     {
