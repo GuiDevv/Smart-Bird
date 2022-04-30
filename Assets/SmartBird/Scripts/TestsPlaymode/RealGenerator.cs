@@ -11,6 +11,8 @@ public class RealGenerator : MonoBehaviour
     float minimalDistance;
     float distanceBetweenWalls;
 
+    float minOffset = -1.9f, maxOffset = 1.9f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,9 +81,19 @@ public class RealGenerator : MonoBehaviour
 
     public void SpawnWall()
     {
-        float inc = Random.Range(-1.9f, 1.9f);
-        Vector3 position = new Vector3(10.5f, 1.0f + inc, 0.0f);
+        float inc = Random.Range(minOffset, maxOffset);
+        Vector3 position = new Vector3(10.5f, inc, 0.0f);
         newWall = Instantiate(wall, position, new Quaternion(0, 0, 0, 0));
         allWals.Add(newWall);
+    }
+    public void SetVerticalOffset(float min, float max)
+    {
+        minOffset = min;
+        maxOffset = max;
+    }
+
+    public float GetWallVerticalPosition(int i)
+    {
+        return allWals[i].transform.position.y;
     }
 }

@@ -22,9 +22,6 @@ public class WallsGeneratorScript
 
     [UnityTest]
     [TestCase (3f, ExpectedResult = null)]
-    [TestCase (7f, ExpectedResult = null)]
-    [TestCase (1f, ExpectedResult = null)]
-    [TestCase (5f, ExpectedResult = null)]
     public IEnumerator Test_2_VerifyDistanceBetweenWalls(float expectedDistance)
     {
         var generator = GameObject.FindObjectOfType<RealGenerator>();
@@ -39,6 +36,31 @@ public class WallsGeneratorScript
         float result = generator.CalculateDistance(wall1, wall2);
         
         Assert.That(result, Is.InRange(expectedDistance - 0.01f, expectedDistance + 0.01f));
+
+    }
+
+    [UnityTest]
+    [TestCase (-1f, 1f, ExpectedResult = null)]
+    [TestCase(-2f, 1.5f, ExpectedResult = null)]
+    [TestCase(-1.8f, 1.7f, ExpectedResult = null)]
+    [TestCase(-0.3f, 0.8f, ExpectedResult = null)]
+
+    public IEnumerator Test_3_VerifyWallsVerticalOffset(float minDistance, float maxDistance)
+    {
+        //Arrange
+        var generator = GameObject.FindObjectOfType<RealGenerator>();
+
+        //Act
+        generator.SetSpawnDistance(3);
+        generator.SetVerticalOffset(minDistance, maxDistance);
+
+        yield return new WaitForSeconds(3f);
+
+        //Assert
+        for (int i = 1; i < generator.allWals.Count; i++)
+        {            
+            Assert.That(generator.GetWallVerticalPosition(i), Is.InRange(minDistance, maxDistance));            
+        }
 
     }
 
