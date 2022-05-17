@@ -5,3 +5,4 @@ public class PlayerInfo : MonoBehaviour
 {
     public static int score;
 }
+
