@@ -9,6 +9,7 @@ public class TestMoc
 {
     // A Test behaves as an ordinary method
     [Test]
+    [TestCase (20, 2, 40)]
     public void TestMockScoreCount(int pCount, int gMode, int expectedResult)
     {
         var pointCounter = new Mock<IPointCounter>();
@@ -25,6 +26,7 @@ public class TestMoc
 
         pointCounter.VerifyGet(c => c.pipeCount);
         pointCounter.VerifyGet(c => c.gamemode);
+
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -39,4 +41,9 @@ public class TestMoc
 }
 
 
+class FakePointCounter : IPointCounter 
+{
+    public int pipeCount { get; set; }
+    public int gamemode { get; set; }
+}
 

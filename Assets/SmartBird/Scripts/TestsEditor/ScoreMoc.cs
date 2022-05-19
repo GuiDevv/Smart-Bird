@@ -12,6 +12,6 @@ public class ScoreMoc
 
 public interface IPointCounter
 {
-    int pipeCount { get; set; }
-    int gamemode { get; set; }
+    public int pipeCount { get; set; }
+    public int gamemode { get; set; }
 }
