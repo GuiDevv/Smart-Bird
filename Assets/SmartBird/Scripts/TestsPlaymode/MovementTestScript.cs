@@ -11,7 +11,7 @@ public class MovementTestScript
 
     GameObject player;
 
-    //Solução: Carregar a Scene que contém o Player
+    //Soluï¿½ï¿½o: Carregar a Scene que contï¿½m o Player
     [SetUp]
     public void SetUp()
     {
@@ -22,10 +22,14 @@ public class MovementTestScript
     [Test]
     public void Test_1_VerifyIfPlayerExistInScene()
     {
-        Assert.That(Object.FindObjectOfType<BirdAgent>(), Is.Not.Null);
-
+        //Arrange
         if (Object.FindObjectOfType<BirdAgent>())
             SetupPlayerInfo();
+
+        //Assert
+        Assert.That(Object.FindObjectOfType<BirdAgent>(), Is.Not.Null);
+
+        
     }
 
     public void SetupPlayerInfo()
@@ -34,43 +38,53 @@ public class MovementTestScript
     }
 
 
-    //Teste: Verifica se o Player possuí um RigidBody2D
+    //Teste: Verifica se o Player possuï¿½ um RigidBody2D
     [Test]
     public void Test_2_VerifyIfPlayerHasRigidbody2D()
     {
+        //Assert
         Assert.IsNotNull(player.GetComponents<Rigidbody2D>());
     }
 
     [Test]
-    //Teste: Verifica se o Player está ímóvel no início do jogo
-    public void Test_3_VerifyIfGravityIsDisabled()
+    //Teste: Verifica se o Player estï¿½ ï¿½mï¿½vel no inï¿½cio do jogo
+    public void Test_3_VerifyIfGravityIsEnabled()
     {
-        player.GetComponent<Rigidbody2D>().gravityScale = 0;
-        Assert.That(player.GetComponent<Rigidbody2D>().gravityScale, Is.EqualTo(0));
+        //Act
+        player.GetComponent<Rigidbody2D>().gravityScale = Object.FindObjectOfType<BirdAgent>().gameObject.GetComponent<Rigidbody2D>().gravityScale;
+        
+        //Assert
+        Assert.That(player.GetComponent<Rigidbody2D>().gravityScale, Is.EqualTo(1));
     }
 
-    //Teste: Verifica se foi possível aterar a força do pulo
+    //Teste: Verifica se foi possï¿½vel aterar a forï¿½a do pulo
     [Test]
-    [TestCase (20)]
+    [TestCase (300.0f)]
     public void Test_4_ChangeJumpForce(float expectedForce)
-    {
+    {   //Arrange
         GameObject bird = GameObject.FindObjectOfType<BirdAgent>().gameObject;
+            
+        //Act
         bird.GetComponent<BirdAgent>().ChangeForce(expectedForce);
-
-        Assert.AreEqual(expectedForce, bird.GetComponent<BirdAgent>().force.y);
+        
+        //Assert
+        Assert.AreEqual(expectedForce, GameObject.FindObjectOfType<BirdAgent>().gameObject.GetComponent<BirdAgent>().force.y);
     }
 
-    //Teste: Verifica se o Player pula ao utilizar a ação
+    //Teste: Verifica se o Player pula ao utilizar a aï¿½ï¿½o
     [UnityTest]
     public IEnumerator Test_5_VerifyIfPlayerIsJumping()
     {
+        //Arrange
         GameObject bird = Object.FindObjectOfType<BirdAgent>().gameObject;
         Vector3 position = new Vector3();
         position = bird.transform.position;
 
+        //Act
         bird.GetComponent<BirdAgent>().FlappyJump();
-
         yield return new WaitForSeconds(1f);
+
+        //Assert
         Assert.AreNotEqual(position, bird.transform.position);
     }
 

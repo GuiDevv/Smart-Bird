@@ -11,7 +11,7 @@ public class BirdAgent : MonoBehaviour
     bool pressioned;
     public float counter;
 
-    //Precisamos da distância entre o chão e o top
+    //Precisamos da distï¿½ncia entre o chï¿½o e o top
     const float height = 4.5f;
 
     void Start()
@@ -61,10 +61,11 @@ public class BirdAgent : MonoBehaviour
         body.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         body.GetComponent<Rigidbody2D>().AddForce(force);
         body.GetComponent<Rigidbody2D>().gravityScale = 1;
+        Debug.Log(force);
     }
 
     public void ChangeForce(float newForce)
     {
-        force.y = newForce;
+        force = new Vector2(0.0f,newForce);
     }
 }
