@@ -8,13 +8,13 @@ public class WallMovement : MonoBehaviour
     Vector2 force = new Vector2(-250f, 0f);
     public bool active = true;
     Vector3 initialPosition;
-    GameObject gameObject;
+    GameObject gameObj;
     public float deltaTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject = GameObject.Find("SmartBird");
+        gameObj = GameObject.Find("SmartBird");
         initialPosition = transform.position;
         transform.gameObject.GetComponent<Rigidbody2D>().AddForce(force);
     }
